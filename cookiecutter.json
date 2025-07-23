@@ -1,0 +1,20 @@
+{
+    "project_name": "",
+    "package_name": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+    "project_description": "A Django ORM-only project",
+    "author_name": "Your Name",
+    "author_email": "your.email@example.com",
+    "version": "0.1.0",
+    "database_name": "{{ cookiecutter.package_name }}_db",
+    "database_host": "localhost",
+    "database_port": "5432",
+    "use_admin": ["no", "yes"],
+    "admin_url": "admin",
+    "python_version": "3.11",
+    "_extensions": ["jinja2_time"],
+    "_copy_without_render": [
+        "*.pyc",
+        "__pycache__",
+        ".git"
+    ]
+}

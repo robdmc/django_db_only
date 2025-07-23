@@ -1,0 +1,48 @@
+[project]
+name = "{{ cookiecutter.project_name }}"
+version = "{{ cookiecutter.version }}"
+description = "{{ cookiecutter.project_description }}"
+authors = [
+    { name = "{{ cookiecutter.author_name }}", email = "{{ cookiecutter.author_email }}" }
+]
+readme = "README.md"
+requires-python = ">={{ cookiecutter.python_version }}"
+dependencies = [
+    "django>=4.2,<5.0",
+    {% if cookiecutter.database_engine == "postgresql" -%}
+    "psycopg2-binary>=2.9.0",
+    {%- elif cookiecutter.database_engine == "mysql" -%}
+    "mysqlclient>=2.1.0",
+    {%- endif %}
+]
+
+[project.scripts]
+manage = "{{ cookiecutter.package_name }}.scripts.manage:main"
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "ruff",
+    "mypy",
+    "django-stubs",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.black]
+line-length = 88
+target-version = ['py{{ cookiecutter.python_version.replace(".", "") }}']
+
+[tool.ruff]
+line-length = 88
+target-version = "py{{ cookiecutter.python_version.replace('.', '') }}"
+
+[tool.mypy]
+python_version = "{{ cookiecutter.python_version }}"
+plugins = ["mypy_django_plugin.main"]
+strict = true
+
+[tool.django-stubs]
+django_settings_module = "{{ cookiecutter.package_name }}.settings"
