@@ -1,5 +1,7 @@
 # Django ORM-Only Project Template
 
+** This project is still under construction **
+
 This is a cookiecutter template for creating Django projects that use only the ORM functionality without the web framework components.
 
 ## Usage
